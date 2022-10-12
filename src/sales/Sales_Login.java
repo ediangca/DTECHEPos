@@ -74,12 +74,12 @@ public class Sales_Login extends javax.swing.JPanel {
             }
         });
 
-        jPanel1.setBackground(new java.awt.Color(102, 153, 0));
+        jPanel1.setBackground(new java.awt.Color(204, 204, 0));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(102, 153, 0));
+        jLabel1.setForeground(new java.awt.Color(204, 204, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("CASHERING");
 
