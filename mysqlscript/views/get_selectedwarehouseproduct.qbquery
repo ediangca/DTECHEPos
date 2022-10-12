@@ -1,0 +1,5 @@
+﻿create view get_selectedwarehouseproduct as SELECT `WP_No.`, `Warehouse_No.`, `Product_No.`, (select short_description from product where `Product_No.` = w.`Product_No.`)as Description,
+ Cost, Unit,
+ concat((select `Noperunit` from product where `Product_No.` = w.`Product_No.`),' ',(select distinct `product_unit`.`Unit` from `product_unit` where (`product_unit`.`Unitname` = (select `Smallunit` from product where `Product_No.` = w.`Product_No.`))),'/',(select `Bigunit` from product where `Product_No.` = w.`Product_No.`)) AS `perUnit`,
+ Qty, Total_Cost, Discount, Vat, Total_Amount, Datetime_Created,
+ Datetime_Updated, User_ID FROM warehouse_product w;    

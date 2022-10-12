@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="c8pharmacy_warehouse" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0980750000000004"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["D:\\Installers\\Projects\\SalesInventory\\src\\reports\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT `Warehouse_No.`, `Supplier_No.`,
+(select supplier from supplier where `supplier_no.` = w.`supplier_no.`)as Supplier,
+Total_Amount, Total_Discount, Total_Vat, Net_Amount, Payment_type, Terms, Datetime_Created, Datetime_Updated, User_ID,
+(select (select concat(lastname,', ',firstname,' ', substr(middlename,1)) from user_profile where `profile_no.` = u.`profile_no.`) from `user` u where user_id = w.user_id)as `User`,
+postflag, cancelflag
+
+ FROM warehouse w;]]>
+	</queryString>
+	<field name="Warehouse_No." class="java.lang.String"/>
+	<field name="Supplier_No." class="java.lang.String"/>
+	<field name="Supplier" class="java.lang.String"/>
+	<field name="Total_Amount" class="java.lang.Double"/>
+	<field name="Total_Discount" class="java.lang.Double"/>
+	<field name="Total_Vat" class="java.lang.Double"/>
+	<field name="Net_Amount" class="java.lang.Double"/>
+	<field name="Payment_type" class="java.lang.String"/>
+	<field name="Terms" class="java.lang.String"/>
+	<field name="Datetime_Created" class="java.sql.Timestamp"/>
+	<field name="Datetime_Updated" class="java.sql.Timestamp"/>
+	<field name="User_ID" class="java.lang.String"/>
+	<field name="User" class="java.lang.String"/>
+	<field name="postflag" class="java.lang.Boolean"/>
+	<field name="cancelflag" class="java.lang.Boolean"/>
+	<group name="Warehouse_No" isStartNewPage="true">
+		<groupExpression><![CDATA[$F{Warehouse_No.}]]></groupExpression>
+		<groupHeader>
+			<band height="112">
+				<subreport>
+					<reportElement x="0" y="0" width="572" height="111"/>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "c8pharmacy_warehouse_header.jasper"]]></subreportExpression>
+				</subreport>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="113">
+				<staticText>
+					<reportElement x="0" y="48" width="140" height="20"/>
+					<textElement/>
+					<text><![CDATA[Prepared By:]]></text>
+				</staticText>
+				<line>
+					<reportElement x="0" y="112" width="140" height="1"/>
+				</line>
+				<staticText>
+					<reportElement x="218" y="48" width="140" height="20"/>
+					<textElement/>
+					<text><![CDATA[Checked By:]]></text>
+				</staticText>
+				<line>
+					<reportElement x="218" y="112" width="140" height="1"/>
+				</line>
+				<line>
+					<reportElement x="432" y="112" width="140" height="1"/>
+				</line>
+				<staticText>
+					<reportElement x="432" y="48" width="140" height="20"/>
+					<textElement/>
+					<text><![CDATA[Approved By:]]></text>
+				</staticText>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="116" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="47" width="288" height="28"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Supplier_No.} +" - "+ $F{Supplier}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="288" y="47" width="284" height="28"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Warehouse_No.}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement x="0" y="75" width="572" height="41"/>
+				<subreportParameter name="warehouse_no">
+					<subreportParameterExpression><![CDATA[$F{Warehouse_No.}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "c8pharmacy_warehouse_products.jasper"]]></subreportExpression>
+			</subreport>
+			<staticText>
+				<reportElement x="0" y="0" width="572" height="36"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[WAREHOUSE SHEET]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

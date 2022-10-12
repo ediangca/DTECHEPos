@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="c8pharmacy_warehouse_header" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT * FROM company c where isDefault = 1]]>
+	</queryString>
+	<field name="Company_No." class="java.lang.Long"/>
+	<field name="Company_Name" class="java.lang.String"/>
+	<field name="Owner" class="java.lang.String"/>
+	<field name="Contact_No." class="java.lang.String"/>
+	<field name="Email_Address" class="java.lang.String"/>
+	<field name="Address1" class="java.lang.String"/>
+	<field name="Address2" class="java.lang.String"/>
+	<field name="Logo" class="java.lang.Object"/>
+	<field name="isActive" class="java.lang.Boolean"/>
+	<field name="Datetime_Created" class="java.sql.Timestamp"/>
+	<field name="Datetime_Updated" class="java.sql.Timestamp"/>
+	<field name="isDefault" class="java.lang.Boolean"/>
+	<title>
+		<band height="123" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="12" width="555" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Company_Name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="32" width="555" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Address1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="71" width="555" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Email_Address}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="90" width="555" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Contact_No.}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="122" width="555" height="1"/>
+			</line>
+			<textField>
+				<reportElement x="0" y="52" width="555" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Address2}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+</jasperReport>

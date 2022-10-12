@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="dtechreport_warehouse" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="add0d61b-1082-40c4-9051-ffdc6d5be7ee">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="warehouse_no" class="java.lang.String">
+		<parameterDescription><![CDATA[Warehouse No.]]></parameterDescription>
+		<defaultValueExpression><![CDATA[$F{Warehouse_No.}]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["D:/Installers/Projects/SalesInventory/src/reports/"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT * FROM warehouse_report w where `Warehouse_no.` = $P{warehouse_no};]]>
+	</queryString>
+	<field name="Warehouse_No." class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Supplier_No." class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Supplier" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Total_Amount" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Total_Discount" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Total_Vat" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Net_Amount" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Payment_type" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Terms" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Datetime_Created" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Datetime_Updated" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="User_ID" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="User" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="postflag" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cancelflag" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="54" splitType="Stretch">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="53" uuid="2c641605-94d9-4146-a472-3b3a3119144e"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "dtechreport_company_header.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="76" splitType="Stretch">
+			<textField>
+				<reportElement x="289" y="47" width="266" height="20" uuid="c5d1db47-74ac-4567-a1b5-4aabb37ddb8f"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["No. : " + $F{Warehouse_No.}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="47" width="289" height="20" uuid="5a998d9f-1916-452c-8491-d07d9e468de8"/>
+				<textElement>
+					<font fontName="Tahoma" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Supplier_No.} +" - "+ $F{Supplier}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="75" width="555" height="1" uuid="9cb6f696-d910-4d0a-8da0-b1a1694dbcff"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="25" uuid="498f1951-dd20-4883-beb3-ead6df01c273"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[WAREHOUSE SHEET]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="50" splitType="Stretch">
+			<subreport>
+				<reportElement x="0" y="7" width="555" height="37" uuid="93335020-77f5-455f-9168-92695770d62e"/>
+				<subreportParameter name="warehouse_no">
+					<subreportParameterExpression><![CDATA[$P{warehouse_no}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "dtechreport_warehouse_product.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="84" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="28" width="138" height="20" uuid="c5faf206-997f-4bc0-a7c3-dad656443312"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Prepared By:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="221" y="28" width="139" height="20" uuid="859ea768-40fd-46cf-9f1b-e11e3ad6c37e"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Checked By:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="83" width="138" height="1" uuid="301c9b6f-57d4-4448-ac0b-f352ceb94b39"/>
+			</line>
+			<line>
+				<reportElement x="222" y="83" width="138" height="1" uuid="d65ab03b-02fd-4c5d-b751-2a3cdaa77d50"/>
+			</line>
+			<line>
+				<reportElement x="417" y="83" width="138" height="1" uuid="02c43e98-8149-4b88-98e0-8a4bdf4b5900"/>
+			</line>
+			<staticText>
+				<reportElement x="416" y="28" width="139" height="20" uuid="8cbc778e-5fb7-4dbd-bab0-75d9e66694ef"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Approved By:]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

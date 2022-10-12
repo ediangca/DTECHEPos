@@ -1,0 +1,17 @@
+﻿select `p`.`Product_No.` AS `Product_No.`,
+`p`.`Short_Description` AS `Short_Description`,
+if(isnull((select `product_cost`.`New_Cost` from `product_cost` where (`product_cost`.`Product_No.` = `p`.`Product_No.`) order by `product_cost`.`Datetime_Updated` desc limit 1)),0.00,(select `product_cost`.`New_Cost` from `product_cost` where (`product_cost`.`Product_No.` = `p`.`Product_No.`) order by `product_cost`.`Datetime_Updated` desc limit 1)) AS `New_Cost`,
+concat(`p`.`Noperunit`,' ',(select distinct `product_unit`.`Unit` from `product_unit` where (`product_unit`.`Unitname` = `p`.`Smallunit`)),'/',`p`.`Bigunit`) AS `perUnit`,
+`p`.`Smallunit` AS `Smallunit`,
+1.00 AS `QTY`,
+(1 * if(isnull((select `product_cost`.`New_Cost` from `product_cost` where (`product_cost`.`Product_No.` = `p`.`Product_No.`) order by `product_cost`.`Datetime_Updated` desc limit 1)),0.00,(select `product_cost`.`New_Cost` from `product_cost` where (`product_cost`.`Product_No.` = `p`.`Product_No.`) order by `product_cost`.`Datetime_Updated` desc limit 1))) AS `TOTAL_COST`,
+0.00 AS `DISCOUNT`,
+if((select `product`.`isVatable` from `product` where (`product`.`Product_No.` = `p`.`Product_No.`)),
+((if(isnull((select `product_cost`.`New_Cost` from `product_cost` where (`product_cost`.`Product_No.` = `p`.`Product_No.`) order by `product_cost`.`Datetime_Updated` desc limit 1)),0.00,(select `product_cost`.`New_Cost` from `product_cost` where (`product_cost`.`Product_No.` = `p`.`Product_No.`) order by `product_cost`.`Datetime_Updated` desc limit 1)) / 1.12) * 0.12),
+0.0) AS `VAT`,
+((1 *
+(if(isnull((select `product_cost`.`New_Cost` from `product_cost` where (`product_cost`.`Product_No.` = `p`.`Product_No.`) order by `product_cost`.`Datetime_Updated` desc limit 1)),0.00,(select `product_cost`.`New_Cost` from `product_cost` where (`product_cost`.`Product_No.` = `p`.`Product_No.`) order by `product_cost`.`Datetime_Updated` desc limit 1))))
+-(if((select `product`.`isVatable` from `product` where (`product`.`Product_No.` = `p`.`Product_No.`)),
+((if(isnull((select `product_cost`.`New_Cost` from `product_cost` where (`product_cost`.`Product_No.` = `p`.`Product_No.`) order by `product_cost`.`Datetime_Updated` desc limit 1)),0.00,(select `product_cost`.`New_Cost` from `product_cost` where (`product_cost`.`Product_No.` = `p`.`Product_No.`) order by `product_cost`.`Datetime_Updated` desc limit 1)) / 1.12) * 0.12),
+0.0))
+) AS `TOTAL` from `product` `p`;
