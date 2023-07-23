@@ -79,7 +79,7 @@ public class Inventory_Login extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel2.setText("Powered by D-Tech Solutions");
+        jLabel2.setText("Powered by D-TechM Solutions");
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButton2.setText("X");

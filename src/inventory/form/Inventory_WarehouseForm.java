@@ -1459,8 +1459,8 @@ public class Inventory_WarehouseForm extends javax.swing.JDialog {
                 result = statement.executeQuery("SELECT * FROM warehouse_product w where `Warehouse_No.` = '" + Warehouse_No + "'");
                 while (result.next()) {
                     restoreselectedproduct(result.getString(3));
-
                 }
+                label_totalproduct.setText("Total Product : " + producttable.getRowCount());
                 statement.close();
                 result.close();
             }

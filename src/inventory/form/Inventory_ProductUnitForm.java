@@ -595,19 +595,19 @@ public class Inventory_ProductUnitForm extends javax.swing.JDialog {
     private void restoredata(String unitno) {
         try {
             statement = connection.createStatement();
-            System.out.println("SELECT Unit_No., Unit, Unitname, Unittype, isActive, Datetime_Created, Datetime_Updated, User_ID FROM product_unit p where "
-                    + "unit = '" + unitno + "'");
-            result = statement.executeQuery("SELECT Unit_No., Unit, Unitname, Unittype, isActive, Datetime_Created, Datetime_Updated, User_ID FROM product_unit p where "
-                    + "unit = '" + unitno + "'");
+            System.out.println("SELECT `Unit_No.`, Unit, Unitname, Unittype, isActive, Datetime_Created, Datetime_Updated, User_ID FROM product_unit p where "
+                    + "`Unit_No.` = '" + unitno + "'");
+            result = statement.executeQuery("SELECT `Unit_No.`, Unit, Unitname, Unittype, isActive, Datetime_Created, Datetime_Updated, User_ID FROM product_unit p where "
+                    + "`Unit_No.` = '" + unitno + "'");
             if (result.next()) {
                 Unit_No = result.getString(1);
-                field_unit.setText(result.getString(1));
-                field_unitname.setText(result.getString(2));
-                combo_unittype.setSelectedItem(result.getString(3));
+                field_unit.setText(result.getString(2));
+                field_unitname.setText(result.getString(3));
+                combo_unittype.setSelectedItem(result.getString(4));
                 field_unit.setEnabled(true);
                 field_unitname.setEnabled(true);
                 combo_unittype.setEnabled(true);
-                if (result.getBoolean(4)) {
+                if (result.getBoolean(5)) {
                     but_inactive.setText("INACTIVE");
                 } else {
                     but_inactive.setText("ACTIVE");

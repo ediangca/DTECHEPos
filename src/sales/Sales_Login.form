@@ -145,7 +145,7 @@
                   <Color blue="0" green="cc" red="cc" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="CASHERING"/>
+                <Property name="text" type="java.lang.String" value="CASHIERING"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel2">

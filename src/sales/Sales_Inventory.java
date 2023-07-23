@@ -26,6 +26,7 @@ public class Sales_Inventory {
     static Statement statement;
     static Connection connection;
     static ResultSet result;
+    
 
     public static void main(String[] args) {
         /* Set the Nimbus look and feel */
@@ -87,13 +88,13 @@ public class Sales_Inventory {
                     return;
                 }
 
-//                Inventory_Login inventorylogin = new inventory.Inventory_Login();
-//                inventorylogin.setConnection(connection);
-//                inventorylogin.setVisible(true);
+                Inventory_Login inventorylogin = new inventory.Inventory_Login();
+                inventorylogin.setConnection(connection);
+                inventorylogin.setVisible(true);
 
-                Sales_Mainframe saleslogin = new Sales_Mainframe();
-                saleslogin.setConnection(db.connect());
-                saleslogin.setVisible(true);
+//                Sales_Mainframe saleslogin = new Sales_Mainframe();
+//                saleslogin.setConnection(db.connect());
+//                saleslogin.setVisible(true);
             }
         });
     }

@@ -23,7 +23,7 @@ import net.sf.jasperreports.swing.JRViewer;
  */
 public class Reports {
 
-    public static String REPORTS_LOCATION = "D:\\DTECH\\Reports\\";
+    public static String REPORTS_LOCATION = "D:\\Projects\\DTECHEPos\\reports";
     private HashMap map = null;
     private String reportName = "";
     private Connection connection = null;
@@ -37,7 +37,7 @@ public class Reports {
 //        System.out.println(new File(getClass().getResource("/reports/").toURI()).getPath());
 //        REPORTS_LOCATION = new File(getClass().getResource("/reports/").toURI()).getPath();
 
-        REPORTS_LOCATION = "D:/Installers/Projects/SalesInventory/src/reports/";
+        REPORTS_LOCATION = "D:\\Projects\\DTECHEPos\\reports\\";
         map = new HashMap();
         this.connection = connection;
         this.reportName = reportName;

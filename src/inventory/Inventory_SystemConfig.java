@@ -1251,8 +1251,8 @@ public class Inventory_SystemConfig extends javax.swing.JPanel {
 
     private void component_access() {
         if (!inventory_mainframe.position.equalsIgnoreCase("tech-administrator")) {
+            jTabbedPane1.removeTabAt(0);
             jTabbedPane1.removeTabAt(1);
-            jTabbedPane1.removeTabAt(2);
         }
     }
 

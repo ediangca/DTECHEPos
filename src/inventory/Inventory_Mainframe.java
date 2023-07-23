@@ -516,9 +516,9 @@ public class Inventory_Mainframe extends javax.swing.JFrame {
     private void getPosition() {
         try {
             statement = connection.createStatement();
-            System.out.println("SELECT  (Select position from position where `position_no.` = up.`position_no.`)as Position FROM `user` u join `user_profile` up on u.`Profile_No.` = up.`Profile_No.` join "
+            System.out.println("SELECT p.`position` FROM `user` u join `user_profile` up on u.`Profile_No.` = up.`Profile_No.` join user_position p on up.`position_no.`= p.`position_no.` "
                     + "where u.User_ID = '" + userID + "'");
-            result = statement.executeQuery("SELECT  (Select position from position where `position_no.` = up.`position_no.`)as Position FROM `user` u join `user_profile` up on u.`Profile_No.` = up.`Profile_No.` join "
+            result = statement.executeQuery("SELECT p.`position` FROM `user` u join `user_profile` up on u.`Profile_No.` = up.`Profile_No.` join user_position p on up.`position_no.`= p.`position_no.` "
                     + "where u.User_ID = '" + userID + "'");
 
             if (result.next()) {
@@ -528,7 +528,6 @@ public class Inventory_Mainframe extends javax.swing.JFrame {
             statement.close();
             result.close();
 
-            getPosition();
         } catch (Exception e) {
             e.printStackTrace();
         }

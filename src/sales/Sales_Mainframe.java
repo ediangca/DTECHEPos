@@ -124,6 +124,7 @@ public class Sales_Mainframe extends javax.swing.JFrame {
         but_sales1 = new javax.swing.JButton();
         but_sales2 = new javax.swing.JButton();
         field_barcode = new javax.swing.JFormattedTextField();
+        but_sales3 = new javax.swing.JButton();
         menu_outer = new javax.swing.JMenuBar();
         Menufile = new javax.swing.JMenu();
         MenuItemlock = new javax.swing.JMenuItem();
@@ -135,6 +136,7 @@ public class Sales_Mainframe extends javax.swing.JFrame {
         MenuItemcancel = new javax.swing.JMenuItem();
         MenuItemsearch = new javax.swing.JMenuItem();
         MenuItemmember = new javax.swing.JMenuItem();
+        MenuItemmember1 = new javax.swing.JMenuItem();
         Menuoption = new javax.swing.JMenu();
         Menuitemoptquantity = new javax.swing.JMenuItem();
 
@@ -161,7 +163,7 @@ public class Sales_Mainframe extends javax.swing.JFrame {
         menu_inner.add(REPORTS);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("SALE INVENTORY SYSTEM  BY D-TECH SOLUTIONS");
+        setTitle("SALE INVENTORY SYSTEM  BY D-TECHM SOLUTIONS");
 
         card_panel.setBackground(new java.awt.Color(51, 51, 51));
         card_panel.setLayout(new java.awt.CardLayout());
@@ -181,14 +183,14 @@ public class Sales_Mainframe extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_loginLayout.createSequentialGroup()
                 .addGap(318, 318, 318)
                 .addGroup(panel_loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(label_loadingtext, javax.swing.GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE)
+                    .addComponent(label_loadingtext, javax.swing.GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
                     .addComponent(label_loading, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(317, 317, 317))
         );
         panel_loginLayout.setVerticalGroup(
             panel_loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_loginLayout.createSequentialGroup()
-                .addContainerGap(220, Short.MAX_VALUE)
+                .addContainerGap(227, Short.MAX_VALUE)
                 .addComponent(label_loading)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(label_loadingtext, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -295,7 +297,7 @@ public class Sales_Mainframe extends javax.swing.JFrame {
         label_datetime.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
         but_add.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
-        but_add.setText("<html> <center> ADD <br><b>[F2/ENTER] <b> </center> </html>");
+        but_add.setText("<html> <center> ADD ITEM <br><b>[F2/ENTER] <b> </center> </html>");
         but_add.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(204, 204, 0)));
         but_add.setContentAreaFilled(false);
         but_add.setFocusPainted(false);
@@ -337,7 +339,7 @@ public class Sales_Mainframe extends javax.swing.JFrame {
         label_userlog.setText("D-TECH ADMINISTRATOR");
 
         but_logout.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
-        but_logout.setText("<html> <center> LOGOUT <br> <b>[F8]</b> </center> </html>");
+        but_logout.setText("<html> <center> LOGOUT <br> <b>[F9]</b> </center> </html>");
         but_logout.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(204, 204, 0)));
         but_logout.setContentAreaFilled(false);
         but_logout.setFocusPainted(false);
@@ -389,7 +391,7 @@ public class Sales_Mainframe extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(panel_dashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 681, Short.MAX_VALUE))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 782, Short.MAX_VALUE))
                 .addContainerGap())
         );
         panel_dashboardLayout.setVerticalGroup(
@@ -416,14 +418,14 @@ public class Sales_Mainframe extends javax.swing.JFrame {
             panel_consoleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_consoleLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jEditorPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 681, Short.MAX_VALUE)
+                .addComponent(jEditorPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 782, Short.MAX_VALUE)
                 .addContainerGap())
         );
         panel_consoleLayout.setVerticalGroup(
             panel_consoleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_consoleLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jEditorPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+                .addComponent(jEditorPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -471,11 +473,11 @@ public class Sales_Mainframe extends javax.swing.JFrame {
         panel_transaction.setLayout(panel_transactionLayout);
         panel_transactionLayout.setHorizontalGroup(
             panel_transactionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 701, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 802, Short.MAX_VALUE)
         );
         panel_transactionLayout.setVerticalGroup(
             panel_transactionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)
         );
 
         jScrollPane1.setBorder(null);
@@ -484,14 +486,19 @@ public class Sales_Mainframe extends javax.swing.JFrame {
         dashboard_panel.add(panel_transaction, "transaction");
 
         but_sales1.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
-        but_sales1.setText("<html> <center> PAY <br> <b>[F6]</b> </center> </html>");
+        but_sales1.setText("<html> <center> PAY <br> <b>[F7]</b> </center> </html>");
         but_sales1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(204, 204, 0)));
         but_sales1.setContentAreaFilled(false);
         but_sales1.setFocusPainted(false);
         but_sales1.setFocusable(false);
+        but_sales1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                but_sales1ActionPerformed(evt);
+            }
+        });
 
         but_sales2.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
-        but_sales2.setText("<html> <center> LOCK <br> <b>[F7]</b> </center> </html>");
+        but_sales2.setText("<html> <center> LOCK <br> <b>[F8]</b> </center> </html>");
         but_sales2.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(204, 204, 0)));
         but_sales2.setContentAreaFilled(false);
         but_sales2.setFocusPainted(false);
@@ -506,16 +513,28 @@ public class Sales_Mainframe extends javax.swing.JFrame {
             }
         });
 
+        but_sales3.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
+        but_sales3.setText("<html> <center> MEMBER <br> <b>[F6]</b> </center> </html>");
+        but_sales3.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(204, 204, 0)));
+        but_sales3.setContentAreaFilled(false);
+        but_sales3.setFocusPainted(false);
+        but_sales3.setFocusable(false);
+        but_sales3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                but_sales3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+            .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(dashboard_panel, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(dashboard_panel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(label_userlog, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -523,12 +542,15 @@ public class Sales_Mainframe extends javax.swing.JFrame {
                         .addComponent(label_datetime, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(label_dateday, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                    .addComponent(field_barcode, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addComponent(but_logout, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(but_sales2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(but_sales1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(but_sales3, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(but_search, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -536,9 +558,7 @@ public class Sales_Mainframe extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(but_void, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(but_add, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(field_barcode))
+                        .addComponent(but_add, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -560,16 +580,17 @@ public class Sales_Mainframe extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(field_barcode, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(but_sales1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(but_search, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(but_cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(but_cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(but_sales3, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(but_sales1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(but_add, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(but_void, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(but_sales2, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(but_logout, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(but_add, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(but_void, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(but_logout, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -584,7 +605,7 @@ public class Sales_Mainframe extends javax.swing.JFrame {
         );
         panel_salesLayout.setVerticalGroup(
             panel_salesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 504, Short.MAX_VALUE)
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 484, Short.MAX_VALUE)
             .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -592,13 +613,13 @@ public class Sales_Mainframe extends javax.swing.JFrame {
 
         menu_outer.setFocusable(false);
         menu_outer.setNextFocusableComponent(field_barcode);
-        menu_outer.setPreferredSize(new java.awt.Dimension(63, 0));
+        menu_outer.setPreferredSize(new java.awt.Dimension(63, 20));
         menu_outer.setRequestFocusEnabled(false);
         menu_outer.setVerifyInputWhenFocusTarget(false);
 
         Menufile.setText("FILE");
 
-        MenuItemlock.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F7, 0));
+        MenuItemlock.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F9, 0));
         MenuItemlock.setText("Lock");
         MenuItemlock.setNextFocusableComponent(field_barcode);
         MenuItemlock.setRequestFocusEnabled(false);
@@ -698,11 +719,23 @@ public class Sales_Mainframe extends javax.swing.JFrame {
         });
         Menuitem.add(MenuItemmember);
 
+        MenuItemmember1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F7, 0));
+        MenuItemmember1.setText("Pay");
+        MenuItemmember1.setNextFocusableComponent(field_barcode);
+        MenuItemmember1.setRequestFocusEnabled(false);
+        MenuItemmember1.setVerifyInputWhenFocusTarget(false);
+        MenuItemmember1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuItemmember1ActionPerformed(evt);
+            }
+        });
+        Menuitem.add(MenuItemmember1);
+
         menu_outer.add(Menuitem);
 
         Menuoption.setText("OPTION");
 
-        Menuitemoptquantity.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_END, 0));
+        Menuitemoptquantity.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_UP, 0));
         Menuitemoptquantity.setText("Bulk Quantity");
         Menuitemoptquantity.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -719,7 +752,7 @@ public class Sales_Mainframe extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(card_panel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(card_panel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1113, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -748,18 +781,20 @@ public class Sales_Mainframe extends javax.swing.JFrame {
             } else {
                 try {
 
-                    qty = (int) Integer.parseInt(JOptionPane.showInputDialog("Enter Quantity:"));
+                    qty = ((int) Integer.parseInt(JOptionPane.showInputDialog("Enter Quantity:")));
                     valitqty = true;
-
                 } catch (NumberFormatException e) {
+                    field_barcode.setText(null);
                     System.err.println(e.getMessage());
-                    JOptionPane.showConfirmDialog(this, "Enter a valid input for quantity.", "D-TECH WARNING", JOptionPane.PLAIN_MESSAGE, JOptionPane.WARNING_MESSAGE);
+//                    JOptionPane.showConfirmDialog(this, "Enter a valid input for quantity.", "D-TECH WARNING", JOptionPane.PLAIN_MESSAGE, JOptionPane.WARNING_MESSAGE);
                     valitqty = false;
                 }
             }
         }
         if (valitqty) {
+            bulk_quantity = false;
             addselectitem(field_barcode.getText(), qty);
+
         }
     }//GEN-LAST:event_but_addActionPerformed
 
@@ -866,6 +901,18 @@ public class Sales_Mainframe extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_MenuItemexitActionPerformed
 
+    private void but_sales1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_but_sales1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_but_sales1ActionPerformed
+
+    private void MenuItemmember1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuItemmember1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MenuItemmember1ActionPerformed
+
+    private void but_sales3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_but_sales3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_but_sales3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -909,6 +956,7 @@ public class Sales_Mainframe extends javax.swing.JFrame {
     private javax.swing.JMenuItem MenuItemlock;
     private javax.swing.JMenuItem MenuItemlogout;
     private javax.swing.JMenuItem MenuItemmember;
+    private javax.swing.JMenuItem MenuItemmember1;
     private javax.swing.JMenuItem MenuItemsearch;
     private javax.swing.JMenuItem MenuItemvoid;
     private javax.swing.JMenu Menufile;
@@ -921,6 +969,7 @@ public class Sales_Mainframe extends javax.swing.JFrame {
     private javax.swing.JButton but_logout;
     private javax.swing.JButton but_sales1;
     private javax.swing.JButton but_sales2;
+    private javax.swing.JButton but_sales3;
     private javax.swing.JButton but_search;
     private javax.swing.JButton but_void;
     public static javax.swing.JPanel card_panel;
