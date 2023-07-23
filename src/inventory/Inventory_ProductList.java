@@ -5,8 +5,11 @@
  */
 package inventory;
 
+import classes.Reports;
 import inventory.form.*;
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -25,7 +28,7 @@ public class Inventory_ProductList extends javax.swing.JPanel {
     Inventory_ProductCategoryForm inventory_productcategoryform;
     Inventory_ProductUnitForm inventory_productunitform;
     Inventory_ProductDiscountScheme inventory_productdiscountscheme;
-    
+
     Inventory_ProductForm inventory_productform;
     Inventory_ProductCostForm inventory_productcostform;
     Inventory_ProductPriceForm inventory_productpriceform;
@@ -129,6 +132,7 @@ public class Inventory_ProductList extends javax.swing.JPanel {
             }
         });
         jTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        jTable1.getTableHeader().setReorderingAllowed(false);
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable1MouseClicked(evt);
@@ -136,9 +140,9 @@ public class Inventory_ProductList extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setMinWidth(50);
+            jTable1.getColumnModel().getColumn(0).setMinWidth(100);
             jTable1.getColumnModel().getColumn(0).setPreferredWidth(100);
-            jTable1.getColumnModel().getColumn(0).setMaxWidth(100);
+            jTable1.getColumnModel().getColumn(0).setMaxWidth(150);
             jTable1.getColumnModel().getColumn(1).setMinWidth(200);
             jTable1.getColumnModel().getColumn(1).setPreferredWidth(200);
             jTable1.getColumnModel().getColumn(1).setMaxWidth(250);
@@ -250,6 +254,11 @@ public class Inventory_ProductList extends javax.swing.JPanel {
         jButton8.setText("Print All");
         jButton8.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
         jButton8.setContentAreaFilled(false);
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
         jButton10.setText("View");
         jButton10.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
@@ -263,6 +272,11 @@ public class Inventory_ProductList extends javax.swing.JPanel {
         jButton12.setText("Print");
         jButton12.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
         jButton12.setContentAreaFilled(false);
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
 
         but_unit.setText("Unit");
         but_unit.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
@@ -496,6 +510,30 @@ public class Inventory_ProductList extends javax.swing.JPanel {
         inventory_productdiscountscheme.setVisible(true);
     }//GEN-LAST:event_but_discountschemeActionPerformed
 
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        // TODO add your handling code here:
+        if (jTable1.getSelectedRow() < 0) {
+            JOptionPane.showMessageDialog(this, "Select a data first to print.", "D-TECH INFORMATION", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+
+        try {
+            printproduct(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());
+        } catch (Exception ex) {
+            Logger.getLogger(Inventory_ProductList.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+
+        try {
+            printAllProduct();
+        } catch (Exception ex) {
+            Logger.getLogger(Inventory_ProductList.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton8ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton but_category;
@@ -596,5 +634,27 @@ public class Inventory_ProductList extends javax.swing.JPanel {
             e.printStackTrace();
         }
 
+    }
+
+    private void printproduct(String Product_No) throws Exception {
+        Reports reports = new Reports(connection, "dtech_product.jasper");
+
+        reports.getMap().put("product_no", Product_No);
+        if (reports.isJRViewer()) {
+            JOptionPane.showMessageDialog(null, "There's no data to print.");
+            return;
+        }
+
+        inventory_mainframe.jScrollPane1.setViewportView(reports.JRViewer());
+    }
+
+    private void printAllProduct() throws Exception {
+        Reports reports = new Reports(connection, "dtech_productlist.jasper");
+
+        if (reports.isJRViewer()) {
+            JOptionPane.showMessageDialog(null, "There's no data to print.");
+            return;
+        }
+        inventory_mainframe.jScrollPane1.setViewportView(reports.JRViewer());
     }
 }
