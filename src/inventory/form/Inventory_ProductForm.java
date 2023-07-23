@@ -7,6 +7,7 @@ package inventory.form;
 
 import inventory.Inventory_ProductList;
 import java.sql.*;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -123,10 +124,10 @@ public class Inventory_ProductForm extends javax.swing.JDialog {
         jButton1 = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         combo_pbuybytype = new javax.swing.JComboBox<>();
-        jLabel18 = new javax.swing.JLabel();
-        combo_pisbookable = new javax.swing.JComboBox<>();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
+        radio_pisvatable = new javax.swing.JRadioButton();
+        radio_pisbookable = new javax.swing.JRadioButton();
 
         jPanel4.setOpaque(false);
 
@@ -434,11 +435,11 @@ public class Inventory_ProductForm extends javax.swing.JDialog {
                     .addGroup(panel_pdetailsLayout.createSequentialGroup()
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(field_psdescription, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE))
+                        .addComponent(field_psdescription, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE))
                     .addGroup(panel_pdetailsLayout.createSequentialGroup()
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE))
                     .addGroup(panel_pdetailsLayout.createSequentialGroup()
                         .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -528,18 +529,28 @@ public class Inventory_ProductForm extends javax.swing.JDialog {
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel9.setText("Sellling Price");
 
+        field_pcost.setBackground(new java.awt.Color(0, 0, 0));
         field_pcost.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+        field_pcost.setForeground(new java.awt.Color(153, 255, 0));
         field_pcost.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
+        field_pcost.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         field_pcost.setText("0.00");
+        field_pcost.setDisabledTextColor(new java.awt.Color(153, 255, 0));
+        field_pcost.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         field_pcost.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 field_pcostFocusLost(evt);
             }
         });
 
+        field_pprice.setBackground(new java.awt.Color(0, 0, 0));
         field_pprice.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+        field_pprice.setForeground(new java.awt.Color(153, 255, 0));
         field_pprice.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
+        field_pprice.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         field_pprice.setText("0.00");
+        field_pprice.setDisabledTextColor(new java.awt.Color(153, 255, 0));
+        field_pprice.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         field_pprice.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 field_ppriceFocusLost(evt);
@@ -550,27 +561,35 @@ public class Inventory_ProductForm extends javax.swing.JDialog {
         jLabel10.setText("Remaining Stock");
 
         label_pstock.setBackground(new java.awt.Color(0, 0, 0));
-        label_pstock.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        label_pstock.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         label_pstock.setForeground(new java.awt.Color(153, 255, 0));
         label_pstock.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_pstock.setText("0");
         label_pstock.setOpaque(true);
 
-        jButton1.setText("Show Deliveries");
+        jButton1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButton1.setText("Show");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel11.setText("Buy by type");
 
-        combo_pbuybytype.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PIECE", "HALF DOZEN", "DOZEN" }));
+        combo_pbuybytype.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PIECE", "HALF DOZEN", "DOZEN", "CUSTOM" }));
         combo_pbuybytype.setBorder(null);
         combo_pbuybytype.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
-
-        jLabel18.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel18.setText("Vatable");
-
-        combo_pisbookable.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "YES", "NO" }));
-        combo_pisbookable.setBorder(null);
-        combo_pisbookable.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        combo_pbuybytype.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+                combo_pbuybytypePopupMenuWillBecomeInvisible(evt);
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+        });
 
         jLabel19.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel19.setText("per piece");
@@ -578,45 +597,47 @@ public class Inventory_ProductForm extends javax.swing.JDialog {
         jLabel20.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel20.setText("per piece");
 
+        radio_pisvatable.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        radio_pisvatable.setText("Vat");
+        radio_pisvatable.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        radio_pisvatable.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        radio_pisbookable.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        radio_pisbookable.setText("Bookable");
+        radio_pisbookable.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        radio_pisbookable.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
         javax.swing.GroupLayout panel_pcostLayout = new javax.swing.GroupLayout(panel_pcost);
         panel_pcost.setLayout(panel_pcostLayout);
         panel_pcostLayout.setHorizontalGroup(
             panel_pcostLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panel_pcostLayout.createSequentialGroup()
-                .addGroup(panel_pcostLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_pcostLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panel_pcostLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(panel_pcostLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(panel_pcostLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(radio_pisbookable, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(radio_pisvatable, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panel_pcostLayout.createSequentialGroup()
+                        .addGroup(panel_pcostLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(panel_pcostLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panel_pcostLayout.createSequentialGroup()
-                                .addGap(4, 4, 4)
-                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(panel_pcostLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(panel_pcostLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(field_pcost)
-                            .addComponent(field_pprice))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(panel_pcostLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel20, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(panel_pcostLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(panel_pcostLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panel_pcostLayout.createSequentialGroup()
-                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(panel_pcostLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(field_pcost, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                                    .addComponent(field_pprice)
+                                    .addComponent(label_pstock, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(label_pstock, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(panel_pcostLayout.createSequentialGroup()
-                                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(combo_pbuybytype, 0, 241, Short.MAX_VALUE))
-                            .addGroup(panel_pcostLayout.createSequentialGroup()
-                                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(combo_pisbookable, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                .addGroup(panel_pcostLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
+                                    .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
+                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                            .addComponent(combo_pbuybytype, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         panel_pcostLayout.setVerticalGroup(
@@ -634,19 +655,23 @@ public class Inventory_ProductForm extends javax.swing.JDialog {
                     .addComponent(field_pprice, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panel_pcostLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(label_pstock, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                .addGroup(panel_pcostLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panel_pcostLayout.createSequentialGroup()
+                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_pcostLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(label_pstock, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panel_pcostLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(combo_pbuybytype, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panel_pcostLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(combo_pisbookable, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(238, Short.MAX_VALUE))
+                .addGap(219, 219, 219)
+                .addComponent(radio_pisvatable)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(radio_pisbookable)
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("OTHERS", panel_pcost);
@@ -668,7 +693,7 @@ public class Inventory_ProductForm extends javax.swing.JDialog {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTabbedPane1)
-                .addGap(0, 0, 0)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -707,28 +732,34 @@ public class Inventory_ProductForm extends javax.swing.JDialog {
             validated_fields = "Please check the ff. fields:\n\n";
             return;
         }
-        boolean active = true, bookable = true;
+        boolean active = true, vatable = radio_pisvatable.isSelected(), bookable = radio_pisbookable.isSelected();
         int buyby = 0;
         if (combo_pisactive.getSelectedIndex() > 1) {
             active = false;
         }
-        if (combo_pisbookable.getSelectedIndex() > 1) {
-            bookable = false;
-        }
-        switch (combo_pbuybytype.getSelectedIndex()) {
-            case 1:
+        switch (combo_pbuybytype.getSelectedItem().toString()) {
+            case "PIECE":
                 buyby = 1;
                 break;
-            case 2:
+            case "HALF DOZEN":
                 buyby = 6;
                 break;
-            case 3:
+            case "DOZEN":
                 buyby = 12;
                 break;
+            default:
+                try {
+                    buyby = ((int) Integer.parseInt(combo_pbuybytype.getSelectedItem().toString()));
+                } catch (NumberFormatException e) {
+                    System.err.print(e.getMessage());
+                    buyby = 1;
+                }
+                break;
         }
+
         String currentDatetime = new SimpleDateFormat("yyyy-MM-d hh:mm:ss").format(new Date());
         try {
-//            Product_No., Barcode, Short_Description, Description, Type, Category, Quantity, Buybytype, isActive, isBookable, Company_No., Datetime_Created, Datetime_Updated, cancelflag
+//            Product_No., Barcode, Short_Description, Description, Type, Category, Quantity, Buybytype, isActive, isVatable, Company_No., Datetime_Created, Datetime_Updated, cancelflag
             if (but_save.getText().equalsIgnoreCase("save")) {
                 statement = connection.createStatement();
                 statement.executeUpdate("insert into product values('"
@@ -741,6 +772,7 @@ public class Inventory_ProductForm extends javax.swing.JDialog {
                         + label_pstock.getText() + ","
                         + buyby + ","
                         + active + ","
+                        + vatable + ",'"
                         + bookable + ",'"
                         + inventory_productlist.inventory_mainframe.Company_No + "','"
                         + new SimpleDateFormat("yyyy-MM-d HH:mm:ss").format(new Date()) + "','"
@@ -787,7 +819,8 @@ public class Inventory_ProductForm extends javax.swing.JDialog {
                         + field_pdescription.getText().trim() + "', `type` = '"
                         + combo_ptype.getSelectedItem() + "', `category`='"
                         + combo_pcategory.getSelectedItem() + "', isactive ="
-                        + active + ",`isbookable` ="
+                        + active + ",`isVatable` ="
+                        + vatable + ",`isBookable` ="
                         + bookable + ",`buyby` ="
                         + buyby + ",`quantity` ="
                         + label_pstock.getText() + ", `Smallunit` = '"
@@ -881,6 +914,29 @@ public class Inventory_ProductForm extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_but_ssaleactivateActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void combo_pbuybytypePopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_combo_pbuybytypePopupMenuWillBecomeInvisible
+        // TODO add your handling code here:
+        if (combo_pbuybytype.getSelectedIndex() > -1) {
+            int index = combo_pbuybytype.getSelectedIndex();
+            if (combo_pbuybytype.getSelectedIndex() == 3) {
+                combo_pbuybytype.setEditable(true);
+            } else {
+                combo_pbuybytype.setEditable(false);
+            }
+
+            if (combo_pbuybytype.getSelectedItem().toString().equalsIgnoreCase("CUSTOM")) {
+                combo_pbuybytype.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"PIECE", "HALF DOZEN", "DOZEN", ""}));
+            } else {
+                combo_pbuybytype.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"PIECE", "HALF DOZEN", "DOZEN", combo_pbuybytype.getItemAt(3)}));
+            }
+            combo_pbuybytype.setSelectedIndex(index);
+        }
+    }//GEN-LAST:event_combo_pbuybytypePopupMenuWillBecomeInvisible
+
     /**
      * @param args the command line arguments
      */
@@ -933,7 +989,6 @@ public class Inventory_ProductForm extends javax.swing.JDialog {
     private javax.swing.JComboBox<String> combo_pcategory;
     private javax.swing.JComboBox<String> combo_pedatesale;
     private javax.swing.JComboBox<String> combo_pisactive;
-    private javax.swing.JComboBox<String> combo_pisbookable;
     private javax.swing.JSpinner combo_pnounit;
     private javax.swing.JComboBox<String> combo_pschedule;
     private javax.swing.JComboBox<String> combo_psdatesale;
@@ -957,7 +1012,6 @@ public class Inventory_ProductForm extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
@@ -981,6 +1035,8 @@ public class Inventory_ProductForm extends javax.swing.JDialog {
     private javax.swing.JLabel label_pstock;
     private javax.swing.JPanel panel_pcost;
     private javax.swing.JPanel panel_pdetails;
+    private javax.swing.JRadioButton radio_pisbookable;
+    private javax.swing.JRadioButton radio_pisvatable;
     // End of variables declaration//GEN-END:variables
 
     private boolean validate_field() {
@@ -1049,7 +1105,7 @@ public class Inventory_ProductForm extends javax.swing.JDialog {
         field_pprice.setText(null);
         combo_pisactive.setSelectedIndex(0);
         combo_pbuybytype.setSelectedIndex(0);
-        combo_pisbookable.setSelectedIndex(0);
+        radio_pisvatable.setSelected(false);
 
         jTabbedPane1.setSelectedIndex(0);
         jRadioButton1ActionPerformed(null);
@@ -1093,30 +1149,42 @@ public class Inventory_ProductForm extends javax.swing.JDialog {
 
                 switch (result.getInt(8)) {
                     case 1:
-                        combo_pbuybytype.setSelectedIndex(1);
+                        combo_pbuybytype.setSelectedIndex(0);
                         break;
                     case 6:
-                        combo_pbuybytype.setSelectedIndex(2);
+                        combo_pbuybytype.setSelectedIndex(1);
                         break;
                     case 12:
-                        combo_pbuybytype.setSelectedIndex(3);
+                        combo_pbuybytype.setSelectedIndex(2);
                         break;
+                    default:
+                        combo_pbuybytype.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"PIECE", "HALF DOZEN", "DOZEN", (result.getInt(8) + "")}));
+                        combo_pbuybytype.setEditable(true);
+                        combo_pbuybytype.setSelectedIndex(3);
                 }
                 if (result.getBoolean(9)) {
                     combo_pisactive.setSelectedIndex(1);
                 } else {
                     combo_pisactive.setSelectedIndex(2);
                 }
-                if (result.getBoolean(10)) {
-                    combo_pisbookable.setSelectedIndex(1);
-                } else {
-                    combo_pisbookable.setSelectedIndex(1);
+
+                radio_pisvatable.setSelected(result.getBoolean(10));
+                radio_pisbookable.setSelected(result.getBoolean(11));
+
+                combo_psunit.setSelectedItem(result.getString(17));
+                combo_pbunit.setSelectedItem(result.getString(18));
+                combo_pnounit.setValue(result.getDouble(19));
+                
+                ResultSet result1 = statement.executeQuery("SELECT New_Cost FROM product_cost p where `Product_No.` = '" + Product_No + "'");
+                if(result1.next()){
+                    field_pcost.setText(new DecimalFormat("##0.00").format(result1.getDouble(1)));
                 }
-
-                combo_psunit.setSelectedItem(result.getString(16));
-                combo_pbunit.setSelectedItem(result.getString(17));
-                combo_pnounit.setValue(result.getDouble(18));
-
+                result1.close();
+                ResultSet result2 = statement.executeQuery("SELECT New_Price FROM product_price p where `Product_No.` = '" + Product_No + "'");
+                if(result2.next()){
+                    field_pprice.setText(new DecimalFormat("##0.00").format(result2.getDouble(1)));
+                }
+                result2.close();
             }
             statement.close();
             result.close();
@@ -1147,6 +1215,7 @@ public class Inventory_ProductForm extends javax.swing.JDialog {
             e.printStackTrace();
         }
     }
+
     private void populateproductcategory() {
         combo_pcategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Select"}));
         try {
@@ -1173,7 +1242,7 @@ public class Inventory_ProductForm extends javax.swing.JDialog {
         field_pcost.setEnabled(enable);
         field_pprice.setEnabled(enable);
         combo_pbuybytype.setEnabled(enable);
-        combo_pisbookable.setEnabled(enable);
+        radio_pisvatable.setEnabled(enable);
 
         combo_pschedule.setEnabled(enable);
         combo_psdatesale.setEnabled(enable);
