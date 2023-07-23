@@ -14,6 +14,8 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
@@ -261,6 +263,7 @@ public class Inventory_WarehouseList extends javax.swing.JPanel {
             }
         });
         jTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        jTable1.getTableHeader().setReorderingAllowed(false);
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable1MouseClicked(evt);
@@ -268,24 +271,33 @@ public class Inventory_WarehouseList extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(0).setPreferredWidth(100);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
+            jTable1.getColumnModel().getColumn(0).setMinWidth(150);
+            jTable1.getColumnModel().getColumn(0).setPreferredWidth(150);
+            jTable1.getColumnModel().getColumn(0).setMaxWidth(200);
+            jTable1.getColumnModel().getColumn(1).setMinWidth(250);
             jTable1.getColumnModel().getColumn(1).setPreferredWidth(250);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
+            jTable1.getColumnModel().getColumn(1).setMaxWidth(300);
+            jTable1.getColumnModel().getColumn(2).setMinWidth(70);
             jTable1.getColumnModel().getColumn(2).setPreferredWidth(70);
-            jTable1.getColumnModel().getColumn(3).setResizable(false);
+            jTable1.getColumnModel().getColumn(2).setMaxWidth(100);
+            jTable1.getColumnModel().getColumn(3).setMinWidth(70);
             jTable1.getColumnModel().getColumn(3).setPreferredWidth(70);
-            jTable1.getColumnModel().getColumn(4).setResizable(false);
+            jTable1.getColumnModel().getColumn(3).setMaxWidth(100);
+            jTable1.getColumnModel().getColumn(4).setMinWidth(70);
             jTable1.getColumnModel().getColumn(4).setPreferredWidth(70);
-            jTable1.getColumnModel().getColumn(5).setResizable(false);
+            jTable1.getColumnModel().getColumn(4).setMaxWidth(100);
+            jTable1.getColumnModel().getColumn(5).setMinWidth(70);
             jTable1.getColumnModel().getColumn(5).setPreferredWidth(70);
-            jTable1.getColumnModel().getColumn(6).setResizable(false);
+            jTable1.getColumnModel().getColumn(5).setMaxWidth(100);
+            jTable1.getColumnModel().getColumn(6).setMinWidth(20);
             jTable1.getColumnModel().getColumn(6).setPreferredWidth(20);
-            jTable1.getColumnModel().getColumn(7).setResizable(false);
+            jTable1.getColumnModel().getColumn(6).setMaxWidth(50);
+            jTable1.getColumnModel().getColumn(7).setMinWidth(150);
             jTable1.getColumnModel().getColumn(7).setPreferredWidth(150);
-            jTable1.getColumnModel().getColumn(8).setResizable(false);
+            jTable1.getColumnModel().getColumn(7).setMaxWidth(200);
+            jTable1.getColumnModel().getColumn(8).setMinWidth(150);
             jTable1.getColumnModel().getColumn(8).setPreferredWidth(150);
+            jTable1.getColumnModel().getColumn(8).setMaxWidth(200);
         }
 
         but_delete.setText("DELETE");
@@ -465,7 +477,7 @@ public class Inventory_WarehouseList extends javax.swing.JPanel {
             return;
         }
         if (Boolean.parseBoolean(jTable1.getValueAt(jTable1.getSelectedRow(), 6).toString())) {
-            JOptionPane.showMessageDialog(this, "Warehouse has been already posted.", "D-TECH INFORMATION", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Data has been already posted.", "D-TECH INFORMATION", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
         try {
@@ -475,7 +487,7 @@ public class Inventory_WarehouseList extends javax.swing.JPanel {
             if (x == JOptionPane.YES_OPTION) {
                 String Warehouse_No = jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString();
                 statement = connection.createStatement();
-                statement.execute("update warehouse set postflag = 1 where `Warehouse_No.` = '" + Warehouse_No + "'");
+                statement.execute("update warehouse set postflag = 1, Datetime_Updated= '" + new SimpleDateFormat("yyyy-MM-d HH:mm:ss").format(new Date()) + "' where `Warehouse_No.` = '" + Warehouse_No + "'");
                 statement.close();
 
                 statement = connection.createStatement();
@@ -543,8 +555,8 @@ public class Inventory_WarehouseList extends javax.swing.JPanel {
             statement.close();
 
             printwarehouse(Warehouse_No);
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception ex) {
+            Logger.getLogger(Inventory_WarehouseList.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_but_printActionPerformed
 
@@ -600,7 +612,7 @@ public class Inventory_WarehouseList extends javax.swing.JPanel {
         }
         if (jTable1.getSelectedRow() > -1) {
             if (Boolean.parseBoolean(jTable1.getValueAt(jTable1.getSelectedRow(), 6).toString())) {
-                JOptionPane.showMessageDialog(this, "Can't Edit selected Warehouse due to \n data has been already posted.", "D-TECH INFORMATION", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Unable to Edit selected Warehouse.\n Data has been already posted.", "D-TECH INFORMATION", JOptionPane.INFORMATION_MESSAGE);
                 return;
             }
             Inventory_warehouseform = new Inventory_WarehouseForm(inventory_mainframe, true, this, jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());
@@ -622,7 +634,7 @@ public class Inventory_WarehouseList extends javax.swing.JPanel {
         }
         if (jTable1.getSelectedRow() > -1) {
             if (Boolean.parseBoolean(jTable1.getValueAt(jTable1.getSelectedRow(), 6).toString())) {
-                JOptionPane.showMessageDialog(this, "Can't Delete selected Warehouse due to \n data has been already posted.", "D-TECH INFORMATION", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Unable to Delete selected Warehouse.\n Data has been already posted.", "D-TECH INFORMATION", JOptionPane.INFORMATION_MESSAGE);
                 return;
             }
             try {
@@ -693,8 +705,10 @@ public class Inventory_WarehouseList extends javax.swing.JPanel {
         }
         try {
             statement = connection.createStatement();
+            System.out.println("SELECT username, AES_DECRYPT(`password`, 9)as 'PASS_DECRYPT', `position` FROM userdetails_list u\n"
+                    + "where `position` like '%MANAGER%' OR `position` like '%OFFICER%' OR  `position` like '%SUPERVISOR%'");
             result = statement.executeQuery("SELECT username, AES_DECRYPT(`password`, 9)as 'PASS_DECRYPT', `position` FROM userdetails_list u\n"
-                    + "where `position` like '%MANAGER%' OR `position` = '%OFFICER%' OR  `position` = '%SUPERVISOR%'");
+                    + "where `position` like '%MANAGER%' OR `position` like '%OFFICER%' OR  `position` like '%SUPERVISOR%'");
             if (result.next()) {
                 if (!(field_overidepass.getText().compareTo(result.getString(2)) == 0)) {
                     JOptionPane.showMessageDialog(this, "Either Password is Invalid | Incorrect.", "D-TECH WARNING", JOptionPane.WARNING_MESSAGE);
@@ -714,6 +728,11 @@ public class Inventory_WarehouseList extends javax.swing.JPanel {
                 field_overidepass.setText(null);
                 DialogManagerOveride.dispose();
                 printwarehouse(Warehouse_No);
+            } else {
+                JOptionPane.showMessageDialog(this, "Either Password is Invalid | Incorrect.", "D-TECH WARNING", JOptionPane.WARNING_MESSAGE);
+
+                field_overidepass.setText(null);
+                DialogManagerOveride.dispose();
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -794,24 +813,33 @@ public class Inventory_WarehouseList extends javax.swing.JPanel {
         });
 
         if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(0).setPreferredWidth(100);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
+            jTable1.getColumnModel().getColumn(0).setMinWidth(150);
+            jTable1.getColumnModel().getColumn(0).setPreferredWidth(150);
+            jTable1.getColumnModel().getColumn(0).setMaxWidth(200);
+            jTable1.getColumnModel().getColumn(1).setMinWidth(250);
             jTable1.getColumnModel().getColumn(1).setPreferredWidth(250);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
+            jTable1.getColumnModel().getColumn(1).setMaxWidth(300);
+            jTable1.getColumnModel().getColumn(2).setMinWidth(70);
             jTable1.getColumnModel().getColumn(2).setPreferredWidth(70);
-            jTable1.getColumnModel().getColumn(3).setResizable(false);
+            jTable1.getColumnModel().getColumn(2).setMaxWidth(100);
+            jTable1.getColumnModel().getColumn(3).setMinWidth(70);
             jTable1.getColumnModel().getColumn(3).setPreferredWidth(70);
-            jTable1.getColumnModel().getColumn(4).setResizable(false);
+            jTable1.getColumnModel().getColumn(3).setMaxWidth(100);
+            jTable1.getColumnModel().getColumn(4).setMinWidth(70);
             jTable1.getColumnModel().getColumn(4).setPreferredWidth(70);
-            jTable1.getColumnModel().getColumn(5).setResizable(false);
+            jTable1.getColumnModel().getColumn(4).setMaxWidth(100);
+            jTable1.getColumnModel().getColumn(5).setMinWidth(70);
             jTable1.getColumnModel().getColumn(5).setPreferredWidth(70);
-            jTable1.getColumnModel().getColumn(6).setResizable(false);
+            jTable1.getColumnModel().getColumn(5).setMaxWidth(100);
+            jTable1.getColumnModel().getColumn(6).setMinWidth(20);
             jTable1.getColumnModel().getColumn(6).setPreferredWidth(20);
-            jTable1.getColumnModel().getColumn(7).setResizable(false);
+            jTable1.getColumnModel().getColumn(6).setMaxWidth(50);
+            jTable1.getColumnModel().getColumn(7).setMinWidth(150);
             jTable1.getColumnModel().getColumn(7).setPreferredWidth(150);
-            jTable1.getColumnModel().getColumn(8).setResizable(false);
+            jTable1.getColumnModel().getColumn(7).setMaxWidth(200);
+            jTable1.getColumnModel().getColumn(8).setMinWidth(150);
             jTable1.getColumnModel().getColumn(8).setPreferredWidth(150);
+            jTable1.getColumnModel().getColumn(8).setMaxWidth(200);
         }
 
         dtm_warehouse = (DefaultTableModel) jTable1.getModel();
