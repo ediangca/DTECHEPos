@@ -51,7 +51,7 @@ public class Inventory_SupplierForm extends javax.swing.JDialog {
         jRadioButton1.setVisible(false);
         field_supplierno.setText(SupplierNo);
         field_supplierno.setEnabled(false);
-        restoredata();
+        restoreData();
         setLocationRelativeTo(parent);
     }
 
@@ -89,6 +89,8 @@ public class Inventory_SupplierForm extends javax.swing.JDialog {
         field_svatexempt = new javax.swing.JFormattedTextField();
         jLabel12 = new javax.swing.JLabel();
         jRadioButton1 = new javax.swing.JRadioButton();
+        jLabel13 = new javax.swing.JLabel();
+        field_stinno = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("SUPPLIER FORM");
@@ -250,6 +252,21 @@ public class Inventory_SupplierForm extends javax.swing.JDialog {
             }
         });
 
+        jLabel13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel13.setText("Tin No.");
+
+        field_stinno.setForeground(new java.awt.Color(153, 153, 153));
+        field_stinno.setText("n/a");
+        field_stinno.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+        field_stinno.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                field_stinnoFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                field_stinnoFocusLost(evt);
+            }
+        });
+
         javax.swing.GroupLayout panel_uinfoLayout = new javax.swing.GroupLayout(panel_uinfo);
         panel_uinfo.setLayout(panel_uinfoLayout);
         panel_uinfoLayout.setHorizontalGroup(
@@ -289,7 +306,12 @@ public class Inventory_SupplierForm extends javax.swing.JDialog {
                     .addGroup(panel_uinfoLayout.createSequentialGroup()
                         .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(field_svatexempt))))
+                        .addComponent(field_svatexempt))
+                    .addGroup(panel_uinfoLayout.createSequentialGroup()
+                        .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(field_stinno)
+                        .addContainerGap())))
         );
         panel_uinfoLayout.setVerticalGroup(
             panel_uinfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -318,13 +340,17 @@ public class Inventory_SupplierForm extends javax.swing.JDialog {
                     .addComponent(field_semail, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panel_uinfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(field_stinno, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panel_uinfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(field_svatexempt, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panel_uinfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(combo_sisactive, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("SUPPLIER INFORMATION", panel_uinfo);
@@ -345,7 +371,7 @@ public class Inventory_SupplierForm extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane1)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 444, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -409,7 +435,8 @@ public class Inventory_SupplierForm extends javax.swing.JDialog {
                         + field_sname.getText() + "','"
                         + field_saddress.getText().trim() + "','"
                         + field_scontactno.getText() + "','"
-                        + field_semail.getText() + "',"
+                        + field_semail.getText() + "','"
+                        + field_stinno.getText() + "',"
                         + field_svatexempt.getText() + ",'"
                         + new SimpleDateFormat("yyyy-MM-d HH:mm:ss").format(new Date()) + "','"
                         + new SimpleDateFormat("yyyy-MM-d HH:mm:ss").format(new Date()) + "','" + inventory_supplierlist.inventory_mainframe.userID + "',"
@@ -421,11 +448,23 @@ public class Inventory_SupplierForm extends javax.swing.JDialog {
                 statement = connection.createStatement();
 //              Supplier_No., Supplier, Address, Contact_No., Email, Vat, Datetime_Created, Datetime_Updated, User_ID, isActive
                 System.out.println("Updating Supplier Information...");
+                System.out.println("update `supplier` set Supplier ='"
+                        + field_sname.getText().trim() + "', Address ='"
+                        + field_saddress.getText() + "', `Contact_No.` ='"
+                        + field_scontactno.getText() + "', Email ='"
+                        + field_semail.getText() + "', `Tin_No.` ='"
+                        + field_stinno.getText() + "', Vat ="
+                        + field_svatexempt.getText() + ", Datetime_Updated ='"
+                        + new SimpleDateFormat("yyyy-MM-d HH:mm:ss").format(new Date()) + "', User_ID ='"
+                        + inventory_supplierlist.inventory_mainframe.userID + "', isActive = "
+                        + active + " where `Supplier_No.` ='"
+                        + field_supplierno.getText() + "'");
                 statement.executeUpdate("update `supplier` set Supplier ='"
                         + field_sname.getText().trim() + "', Address ='"
                         + field_saddress.getText() + "', `Contact_No.` ='"
                         + field_scontactno.getText() + "', Email ='"
-                        + field_semail.getText() + "', Vat ="
+                        + field_semail.getText() + "', `Tin_No.` ='"
+                        + field_stinno.getText() + "', Vat ="
                         + field_svatexempt.getText() + ", Datetime_Updated ='"
                         + new SimpleDateFormat("yyyy-MM-d HH:mm:ss").format(new Date()) + "', User_ID ='"
                         + inventory_supplierlist.inventory_mainframe.userID + "', isActive = "
@@ -473,24 +512,6 @@ public class Inventory_SupplierForm extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_field_scontactnoFocusLost
 
-    private void field_semailFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_field_semailFocusGained
-        // TODO add your handling code here:
-        if (field_semail.getText().equals("n/a")) {
-            field_semail.setText(null);
-            field_semail.setForeground(new java.awt.Color(0, 0, 0));
-        }
-    }//GEN-LAST:event_field_semailFocusGained
-
-    private void field_semailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_field_semailFocusLost
-        // TODO add your handling code here:
-        if (field_semail.getText().isEmpty()) {
-            field_semail.setText("n/a");
-            field_semail.setForeground(new java.awt.Color(153, 153, 153));
-        } else {
-            field_semail.setForeground(new java.awt.Color(0, 0, 0));
-        }
-    }//GEN-LAST:event_field_semailFocusLost
-
     private void field_svatexemptFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_field_svatexemptFocusLost
         // TODO add your handling code here:
         if (field_svatexempt.getText().isEmpty()) {
@@ -506,6 +527,42 @@ public class Inventory_SupplierForm extends javax.swing.JDialog {
             field_supplierno.setText("");
         }
     }//GEN-LAST:event_jRadioButton1ActionPerformed
+
+    private void field_semailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_field_semailFocusLost
+        // TODO add your handling code here:
+        if (field_semail.getText().isEmpty()) {
+            field_semail.setText("n/a");
+            field_semail.setForeground(new java.awt.Color(153, 153, 153));
+        } else {
+            field_semail.setForeground(new java.awt.Color(0, 0, 0));
+        }
+    }//GEN-LAST:event_field_semailFocusLost
+
+    private void field_semailFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_field_semailFocusGained
+        // TODO add your handling code here:
+        if (field_semail.getText().equals("n/a")) {
+            field_semail.setText(null);
+            field_semail.setForeground(new java.awt.Color(0, 0, 0));
+        }
+    }//GEN-LAST:event_field_semailFocusGained
+
+    private void field_stinnoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_field_stinnoFocusGained
+        // TODO add your handling code here:
+        if (field_stinno.getText().equals("n/a")) {
+            field_stinno.setText(null);
+            field_stinno.setForeground(new java.awt.Color(0, 0, 0));
+        }
+    }//GEN-LAST:event_field_stinnoFocusGained
+
+    private void field_stinnoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_field_stinnoFocusLost
+        // TODO add your handling code here:
+        if (field_stinno.getText().isEmpty()) {
+            field_stinno.setText("n/a");
+            field_stinno.setForeground(new java.awt.Color(153, 153, 153));
+        } else {
+            field_stinno.setForeground(new java.awt.Color(0, 0, 0));
+        }
+    }//GEN-LAST:event_field_stinnoFocusLost
 
     /**
      * @param args the command line arguments
@@ -559,10 +616,12 @@ public class Inventory_SupplierForm extends javax.swing.JDialog {
     private javax.swing.JTextField field_scontactno;
     private javax.swing.JTextField field_semail;
     private javax.swing.JTextField field_sname;
+    private javax.swing.JTextField field_stinno;
     private javax.swing.JTextField field_supplierno;
     private javax.swing.JFormattedTextField field_svatexempt;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
@@ -633,10 +692,10 @@ public class Inventory_SupplierForm extends javax.swing.JDialog {
 
     }
 
-    public void restoredata() {
+    public void restoreData() {
         try {
             Statement statement1 = connection.createStatement();
-//            Supplier_No., Supplier, Address, Contact_No., Email, Vat, Datetime_Created, Datetime_Updated, User_ID, isActive
+//            Supplier_No., Supplier, Address, Contact_No., Email, Tin_No., Vat, Datetime_Created, Datetime_Updated, User_ID, isActive, cancelflag
             ResultSet result1 = statement1.executeQuery("SELECT * FROM supplier where `Supplier_No.` = '" + Supplier_No + "'");
             if (result1.next()) {
 
@@ -646,7 +705,8 @@ public class Inventory_SupplierForm extends javax.swing.JDialog {
                 field_saddress.setText(result1.getString(3));
                 field_scontactno.setText(result1.getString(4));
                 field_semail.setText(result1.getString(5));
-                field_svatexempt.setText(result1.getString(6));
+                field_stinno.setText(result1.getString(6));
+                field_svatexempt.setText(result1.getString(7));
 
                 if (result1.getBoolean(10)) {
                     combo_sisactive.setSelectedIndex(1);
