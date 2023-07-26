@@ -874,7 +874,7 @@ public class Inventory_WarehouseList extends javax.swing.JPanel {
     }
 
     private void printwarehouse(String Warehouse_No) throws Exception {
-        Reports reports = new Reports(connection, "c8pharmacy_warehouse.jasper");
+        Reports reports = new Reports(connection, "dtech_warehouse.jasper");
 
         reports.getMap().put("warehouse_no", Warehouse_No);
         //report.getMap().put("admission_id", "adm201188-1");

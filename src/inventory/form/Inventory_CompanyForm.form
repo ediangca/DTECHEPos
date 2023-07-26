@@ -123,11 +123,13 @@
                               <Component id="field_compowner" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="field_comptelno" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
-                              <Component id="jLabel6" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
-                              <Component id="field_compemail" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jLabel5" alignment="1" min="-2" pref="37" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="field_comptelno" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
+                                  <Component id="jLabel6" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
+                                  <Component id="field_compemail" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                       <Component id="jLabel10" min="-2" pref="174" max="-2" attributes="0"/>

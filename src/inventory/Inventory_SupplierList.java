@@ -5,10 +5,13 @@
  */
 package inventory;
 
+import classes.Reports;
 import inventory.form.Inventory_SupplierForm;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -221,10 +224,20 @@ public class Inventory_SupplierList extends javax.swing.JPanel {
         jButton8.setText("Print All");
         jButton8.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
         jButton8.setContentAreaFilled(false);
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
         jButton9.setText("Print");
         jButton9.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
         jButton9.setContentAreaFilled(false);
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
 
         but_disable.setText("Disable");
         but_disable.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
@@ -368,6 +381,30 @@ public class Inventory_SupplierList extends javax.swing.JPanel {
         showQuery("SELECT * FROM supplierlist s where `supplier_no.` like '%" + field_search.getText() + "%' || `supplier` like '%" + field_search.getText() + "%'");
     }//GEN-LAST:event_field_searchKeyReleased
 
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+        try {
+            printAllSupplier();
+        } catch (Exception ex) {
+            Logger.getLogger(Inventory_ProductList.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        // TODO add your handling code here:
+
+        if (jTable1.getSelectedRow() < 0) {
+            JOptionPane.showMessageDialog(this, "Select a data first to print.", "D-TECH INFORMATION", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+
+        try {
+            printsupplier(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());
+        } catch (Exception ex) {
+            Logger.getLogger(Inventory_ProductList.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton9ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton but_delete;
@@ -462,5 +499,27 @@ public class Inventory_SupplierList extends javax.swing.JPanel {
             e.printStackTrace();
         }
 
+    }
+
+    private void printsupplier(String Supplier_No) throws Exception {
+        Reports reports = new Reports(connection, "dtech_supplier.jasper");
+
+        reports.getMap().put("supplier_no", Supplier_No);
+
+        if (reports.isJRViewer()) {
+            JOptionPane.showMessageDialog(null, "There's no data to print.");
+            return;
+        }
+        inventory_mainframe.jScrollPane1.setViewportView(reports.JRViewer());
+    }
+
+    private void printAllSupplier() throws Exception {
+        Reports reports = new Reports(connection, "dtech_supplierlist.jasper");
+
+        if (reports.isJRViewer()) {
+            JOptionPane.showMessageDialog(null, "There's no data to print.");
+            return;
+        }
+        inventory_mainframe.jScrollPane1.setViewportView(reports.JRViewer());
     }
 }

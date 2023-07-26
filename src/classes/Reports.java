@@ -127,6 +127,7 @@ public class Reports {
     public Component JRViewer() {
         try {
             jasperprint = JasperFillManager.fillReport(getInputStream(), getMap(), getConnection());
+//            JRViewer jrv = new JRViewer(jasperprint);
             return new JRViewer(jasperprint);
         } catch (JRException ex) {
             Logger.getLogger(Reports.class.getName()).log(Level.SEVERE, null, ex);

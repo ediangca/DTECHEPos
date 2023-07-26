@@ -1019,7 +1019,11 @@ public class Inventory_SystemConfig extends javax.swing.JPanel {
         // TODO add your handling code here:
         try {
             if (isvalidated()) {
-                return;
+                JOptionPane.showMessageDialog(this, "Connection Error!", "D-TECH CONNECTION ACCESS DENIED", JOptionPane.INFORMATION_MESSAGE);
+                label_indication.setText("Failure to establish Database!");
+            }else{
+                JOptionPane.showMessageDialog(this, "Database connected!!.", "D-TECH CONNECTION ACCESS GRANTED", JOptionPane.INFORMATION_MESSAGE);
+                label_indication.setText("Database Successfully Established!");
             }
         } catch (Exception e) {
             JOptionPane.showConfirmDialog(inventory_mainframe, e.getMessage(), "D-TECH TEST CONNECTION ERROR", JOptionPane.OK_OPTION, JOptionPane.WARNING_MESSAGE);
@@ -1277,8 +1281,6 @@ public class Inventory_SystemConfig extends javax.swing.JPanel {
         testdb = new MysqlConnect(field_host.getSelectedItem().toString(), field_schema.getText(), field_user.getText(), field_pass.getText());
         if (testdb.connect() == null) {
             valid = true;
-            JOptionPane.showMessageDialog(this, "Connection is invalid.", "D-TECH CONNECTION ACCESS DENIED", JOptionPane.INFORMATION_MESSAGE);
-            label_indication.setText("Ivalid Database Connection..");
             return valid;
         }
         return valid;
